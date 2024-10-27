@@ -43,7 +43,7 @@ def create_recipe():
 
     return jsonify({
         'message': 'Recipe successfully created!',
-        'recipe': {
+        'recipe': [{
             'id': recipe.id,
             'title': recipe.title,
             'making_time': recipe.making_time,
@@ -52,8 +52,8 @@ def create_recipe():
             'cost': recipe.cost,
             'created_at': recipe.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             'updated_at': recipe.updated_at.strftime('%Y-%m-%d %H:%M:%S')
-        }
-    }), 200 
+        }]
+    }), 200
 
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
