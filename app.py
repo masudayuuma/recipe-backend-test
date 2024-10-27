@@ -29,7 +29,7 @@ def create_recipe():
         return jsonify({
             'message': 'Recipe creation failed!',
             'required': ', '.join(required_fields)
-        }), 400
+        }), 200
 
     recipe = Recipe(
         title=data['title'],
@@ -53,7 +53,7 @@ def create_recipe():
             'created_at': recipe.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             'updated_at': recipe.updated_at.strftime('%Y-%m-%d %H:%M:%S')
         }
-    }), 201
+    }), 200 
 
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
@@ -77,14 +77,14 @@ def get_recipe(id):
 
     return jsonify({
         'message': 'Recipe details by id',
-        'recipe': {
+        'recipe': [{
             'id': recipe.id,
             'title': recipe.title,
             'making_time': recipe.making_time,
             'serves': recipe.serves,
             'ingredients': recipe.ingredients,
             'cost': recipe.cost
-        }
+        }]
     }), 200
 
 @app.route('/recipes/<int:id>', methods=['PATCH'])
